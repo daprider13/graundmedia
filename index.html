@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JDMW8NFYGE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JDMW8NFYGE');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graund Dsgn - Catálogo Oficial</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding-top: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* BARRA SUPERIOR NEGRA (FLUJO NATURAL PARA EVITAR CORTES) */
+        .top-announcement-bar {
+            position: relative;
+            width: 100%;
+            background-color: #0d0d0d;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            padding: 12px 15px;
+            box-sizing: border-box;
+        }
+
+        .top-announcement-text {
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 0.3px;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+
+        /* NAVBAR PRINCIPAL (STICKY PARA ADAPTACIÓN PERFECTA) */
+        .navbar {
+            position: sticky;
+            top: 0;
+            left: 0; 
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1000;
+            height: 75px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* BOTÓN DE MENÚ PARA MÓVILES */
+        .mobile-menu-btn {
+            display: none;
+            background-color: #111111;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* LOGOTIPO CENTRAL */
+        .nav-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            outline: none;
+        }
+
+        .brand-logo img {
+            max-height: 45px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0; 
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #222222;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.2s;
+            outline: none;
+            padding: 6px 2px;
+            cursor: pointer;
+            user-select: none;
+            white-space: normal;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover { color: #e60023; }
+        .nav-links a.active { color: #e60023; font-weight: 700; }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        /* ICONOS DE REDES SOCIALES */
+        .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            color: #222222;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.2s;
+        }
+
+        .social-icons a.disabled-icon {
+            cursor: default;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .social-icons a svg {
+            width: 18px;
+            height: 18px;
+            fill: #222222;
+            transition: fill 0.2s;
+        }
+
+        .social-icons a:not(.disabled-icon):hover svg { fill: #e60023; }
+        .social-icons a:not(.disabled-icon):hover { transform: translateY(-1px); }
+
+        .btn-nav-shop {
+            background-color: #e60023;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: background 0.2s;
+            white-space: normal;
+            text-transform: uppercase;
+        }
+
+        .btn-nav-shop:hover { background-color: #ad081b; }
+
+        /* PANEL DINÁMICO DE SUB-CATEGORÍAS */
+        .dynamic-panel {
+            position: sticky;
+            top: 75px;
+            left: 0; 
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+            z-index: 999;
+            max-height: 0;
+            overflow: hidden;
+            border-bottom: 0 solid #e0e0e0;
+            transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+        }
+
+        .dynamic-panel.open {
+            max-height: 160px;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .dynamic-panel-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .dynamic-left { display: flex; align-items: center; flex: 1; gap: 15px; overflow-x: auto; }
+
+        .dynamic-links {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+            margin: 0; padding: 0;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .dynamic-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        .dynamic-links a:hover { color: #e60023; background-color: #f8f9fa; }
+        .dynamic-links a.active-sub { color: #e60023; background-color: #ffe6e8; font-weight: bold; }
+
+        .btn-close-panel {
+            background-color: #e60023;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: none;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
+        }
+        .btn-close-panel:hover { background-color: #ad081b; }
+
+        /* SLIDER / BANNER PRINCIPAL */
+        .slider-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background-color: #ddd;
+            min-height: 250px;
+        }
+
+        .slider-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .slide { min-width: 100%; flex-shrink: 0; position: relative; }
+        .slide img { width: 100%; height: auto; display: block; max-height: 400px; object-fit: cover; }
+
+        .banner-go-btn {
+            position: absolute;
+            bottom: 25px;
+            right: 30px;
+            background-color: #e60023;
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 20;
+            transition: background-color 0.2s, transform 0.2s;
+            text-transform: uppercase;
+        }
+        .banner-go-btn:hover { background-color: #ad081b; transform: translateY(-2px); }
+
+        .slider-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5); color: white; border: none;
+            width: 40px; height: 40px; border-radius: 50%; font-size: 20px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            z-index: 10;
+        }
+        .slider-btn.prev { left: 15px; }
+        .slider-btn.next { right: 15px; }
+
+        /* SECCIONES Y PRODUCTOS */
+        .categorias-container {
+            max-width: 1200px;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
+        }
+
+        .categoria-section {
+            margin-bottom: 50px;
+            scroll-margin-top: 100px;
+        }
+
+        .categoria-titulo {
+            font-size: 22px;
+            color: #111;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaeaea;
+            text-transform: uppercase;
+        }
+
+        /* ESTILOS PARA LA SECCIÓN ABOUT US */
+        .about-us-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+
+        .about-us-content {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        .about-us-content p {
+            margin-bottom: 16px;
+        }
+
+        .about-quote-box {
+            background: #f8f9fa;
+            border-left: 4px solid #e60023;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: #1a1a1a;
+        }
+
+        .about-quote-box p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .about-quote-box span {
+            display: block;
+            margin-top: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .about-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .about-column-card {
+            background: #fdfdfd;
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .about-column-card h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #111;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #e60023;
+            display: inline-block;
+            padding-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .about-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .about-list li {
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .about-list li strong {
+            color: #111;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .category-carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-carousel-track {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            padding: 10px 4px;
+            width: 100%;
+        }
+
+        .category-carousel-track::-webkit-scrollbar { display: none; }
+
+        .pin-card {
+            flex: 0 0 240px;
+            scroll-snap-align: start;
+            background: #fff; 
+            border-radius: 16px;
+            overflow: hidden; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease; 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .pin-card:hover { transform: translateY(-4px); }
+        
+        .pin-card-img-container {
+            width: 100%;
+            height: 240px;
+            background-color: #d1d5db;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pin-card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-name-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            padding: 8px 10px 0 10px;
+            white-space: normal;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+
+        .pin-card.see-more-card {
+            flex: 0 0 120px;
+            background-color: #e60023;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            height: 312px;
+            text-decoration: none;
+            padding: 0 10px;
+            text-align: center;
+        }
+        .pin-card.see-more-card:hover { background-color: #ad081b; }
+        .see-more-text {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        .pin-footer { padding: 8px 12px 12px 12px; display: flex; justify-content: flex-end; background: #fff; margin-top: auto; }
+        .btn-shop {
+            background-color: #e60023; color: white; padding: 6px 14px;
+            border-radius: 20px; text-decoration: none; font-size: 13px;
+            font-weight: bold; transition: background 0.2s;
+            text-transform: uppercase;
+        }
+        .btn-shop:hover { background-color: #ad081b; }
+
+        .cat-slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .cat-slider-btn.prev { left: -20px; }
+        .cat-slider-btn.next { right: -20px; }
+
+        .footer-space-1 { width: 100%; height: 40px; background-color: #e9ecef; margin-top: 20px; }
+        
+        .footer-space-2 { 
+            width: 100%; 
+            background-color: #1a1a1a; 
+            color: #ffffff;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-columns-container {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 300px));
+            gap: 40px;
+            width: 100%;
+            max-width: 800px;
+            justify-content: center;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-column a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.2s;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .footer-column a:hover { color: #ffffff; }
+
+        .footer-bottom-legend {
+            width: 100%;
+            background-color: #111111;
+            color: #888888;
+            text-align: center;
+            padding: 20px 15px;
+            font-size: 13px;
+            border-top: 1px solid #282828;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 950px) {
+            .nav-links { gap: 10px; }
+            .nav-links a { font-size: 13px; }
+            .about-columns { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .top-announcement-bar { padding: 10px 12px; }
+            .top-announcement-text { font-size: 11px; }
+            .navbar { padding: 10px 15px; grid-template-columns: auto 1fr auto; height: 65px; }
+            .dynamic-panel { top: 65px; }
+            
+            /* OCULTAR MENÚ ESCRITORIO Y MOSTRAR BOTÓN MENÚ MÓVIL */
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; }
+            
+            /* OCULTAR EL BANNER EN MÓVILES */
+            .slider-container { display: none; }
+
+            .pin-card { flex: 0 0 160px; }
+            .pin-card-img-container { height: 170px; }
+            .cat-slider-btn { display: none; }
+            .footer-columns-container { grid-template-columns: 1fr; gap: 25px; padding: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA SUPERIOR NEGRA -->
+    <div class="top-announcement-bar">
+        <div class="top-announcement-text">
+            ✨ BUY SAFE: For your security, all your purchases are managed by REDBUBBLE.COM ✨
+        </div>
+    </div>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <!-- Botón de menú para smartphones -->
+            <button class="mobile-menu-btn" onclick="abrirMenuPrincipalMovil()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                MENU
+            </button>
+            <!-- Links de escritorio -->
+            <ul class="nav-links">
+                <li><a data-id="ABOUT US">ABOUT US</a></li>
+                <li><a data-id="CLOTHING">CLOTHING</a></li>
+                <li><a data-id="ACCESORIES">ACCESORIES</a></li>
+                <li><a data-id="COOL STUFF">COOL STUFF</a></li>
+                <li><a data-id="STICKERS&PINS">STICKERS&PINS</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-center">
+            <a href="#" class="brand-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+                <img src="logo/logo.jpg" alt="Graund Dsgn Logo">
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <div class="social-icons">
+                <a href="https://www.instagram.com/graunddesign" target="_blank" title="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a class="disabled-icon" title="X (Desactivado)">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a class="disabled-icon" title="Facebook (Desactivado)">
+                    <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.37 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.592 9 4.75V8z"/></svg>
+                </a>
+                <a class="disabled-icon" title="YouTube (Desactivado)">
+                    <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
+            <a href="https://www.redbubble.com/people/graunddsgn/shop" target="_blank" class="btn-nav-shop">SHOP</a>
+        </div>
+    </nav>
+
+    <!-- PANEL DINÁMICO DE CATEGORÍAS Y SUB-CATEGORÍAS -->
+    <div id="dynamicPanel" class="dynamic-panel" data-tipo="">
+        <div class="dynamic-panel-top-row">
+            <div class="dynamic-left">
+                <ul class="dynamic-links" id="panelOptions"></ul>
+            </div>
+            <div class="dynamic-right">
+                <button class="btn-close-panel" onclick="cerrarPanelDinamico()">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANNER CARRUSEL -->
+    <div class="slider-container" onmouseenter="pausarCarrusel()" onmouseleave="iniciarCarruselAutomatico()">
+        <button class="slider-btn prev" onclick="cambiarSlide(-1)">&#10094;</button>
+        <div class="slider-track" id="sliderTrack"></div>
+        <button class="slider-btn next" onclick="cambiarSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- CONTENEDOR DE PRODUCTOS -->
+    <div class="categorias-container" id="categoriasContainer"></div>
+
+    <div class="footer-space-1"></div>
+    
+    <!-- RECTÁNGULO GRIS OSCURO CON 2 COLUMNAS -->
+    <div class="footer-space-2">
+        <div class="footer-columns-container">
+            <ul class="footer-column">
+                <li><a onclick="desplazarASeccion('OUR STORY')">ABOUT US</a></li>
+                <li><a onclick="desplazarASeccion('OUR STORY')">OUR STORY</a></li>
+                <li><a onclick="desplazarASeccion('ALL CLOTHING')">ALL CLOTHING</a></li>
+                <li><a onclick="desplazarASeccion('MEN')">MEN</a></li>
+                <li><a onclick="desplazarASeccion('WOMEN')">WOMEN</a></li>
+                <li><a onclick="desplazarASeccion('CAPS')">CAPS</a></li>
+                <li><a onclick="desplazarASeccion('SOCKS')">SOCKS</a></li>
+            </ul>
+            <ul class="footer-column">
+                <li><a onclick="desplazarASeccion('BACKPACK')">BACKPACK</a></li>
+                <li><a onclick="desplazarASeccion('CASES')">CASES</a></li>
+                <li><a onclick="desplazarASeccion('PC&LAPTOP')">PC&LAPTOP</a></li>
+                <li><a onclick="desplazarASeccion('PILLOW')">PILLOW</a></li>
+                <li><a onclick="desplazarASeccion('STICKERS')">STICKERS</a></li>
+                <li><a onclick="desplazarASeccion('PINS')">PINS</a></li>
+                <li><a onclick="desplazarASeccion('MAGNETS')">MAGNETS</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- LEYENDA FINAL -->
+    <div class="footer-bottom-legend">
+        "BE STRONG TO MOVE THE WORLD" | Graund Design Co. 2026
+    </div>
+
+    <script>
+        const tabsFijas = {
+            "ABOUT US": ["OUR STORY"],
+            "CLOTHING": ["ALL CLOTHING", "MEN", "WOMEN"],
+            "ACCESORIES": ["CAPS", "SOCKS", "BACKPACK"],
+            "COOL STUFF": ["CASES", "PC&LAPTOP", "PILLOW"],
+            "STICKERS&PINS": ["STICKERS", "PINS", "MAGNETS"]
+        };
+
+        const seeMoreLinks = {
+            "ALL CLOTHING": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-clothing",
+            "MEN": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-tees",
+            "WOMEN": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=w-dresses",
+            "CAPS": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=all-hats",
+            "SOCKS": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-socks",
+            "BACKPACK": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-backpack",
+            "CASES": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-phone-cases",
+            "PC&LAPTOP": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=all-mouse-pads",
+            "PILLOW": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-pillows",
+            "STICKERS": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=all-stickers",
+            "PINS": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-pin-button",
+            "MAGNETS": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-die-cut-magnet"
+        };
+
+        const productosConfig = {
+            "OUR STORY": [],
+            "ALL CLOTHING": [
+                { archivo: "cloth1.jpg", nombre: "Graphic T-Shirt: Ground Skull&Bulls (Negative)", link: "https://www.redbubble.com/i/t-shirt/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/rfjh" },
+                { archivo: "cloth2.jpg", nombre: "Boxy T-Shirt: Be Strong to Move the World", link: "https://www.redbubble.com/i/t-shirt/Be-Strong-to-Move-the-World-by-GraundDSGN/182642419/xtkm?asc=u" },
+                { archivo: "cloth3.jpg", nombre: "Premium Oversized Sweatshirt: NoN Originalis (white)", link: "https://www.redbubble.com/i/sweatshirt/NoN-Originalis-white-by-GraundDSGN/182652930/cdux" },
+                { archivo: "cloth4.jpg", nombre: "Fitted Scoop T-Shirt: Ride Now", link: "https://www.redbubble.com/i/t-shirt/Ride-Now-by-GraundDSGN/182672697/nz95?asc=u" },
+                { archivo: "cloth5.jpg", nombre: "A-Line Dress: Ride Now", link: "https://www.redbubble.com/i/dress/Ride-Now-by-GraundDSGN/182672697/3yb7?asc=u" },
+                { archivo: "cloth6.jpg", nombre: "V-Neck T-Shirt: Be Strong to Move the World", link: "https://www.redbubble.com/i/t-shirt/Be-Strong-to-Move-the-World-by-GraundDSGN/182642419/2cn5?asc=u" }
+            ],
+            "MEN": [
+                { archivo: "men1.jpg", nombre: "Oversized T-shirt: No More stickers please", link: "https://www.redbubble.com/i/t-shirt/No-More-stickers-please-by-GraundDSGN/182651606/rh5j" },
+                { archivo: "men2.jpg", nombre: "Premium T-shirt: Ride Now", link: "https://www.redbubble.com/i/t-shirt/Ride-Now-by-GraundDSGN/182672697/e22z" },
+                { archivo: "men3.jpg", nombre: "Premium Oversized Sweatshirt: Street Rider for Riders", link: "https://www.redbubble.com/i/sweatshirt/Street-Rider-for-Riders-by-GraundDSGN/182672201/cdux?asc=u" },
+                { archivo: "men4.jpg", nombre: "Graphic T-shirt: NoN Originalis (white)", link: "https://www.redbubble.com/i/t-shirt/NoN-Originalis-white-by-GraundDSGN/182652930/rfjh?asc=u" },
+                { archivo: "men5.jpg", nombre: "Active T-shirt: Ground Power Gym", link: "https://www.redbubble.com/i/t-shirt/Ground-Power-Gym-by-GraundDSGN/182641578/z4fd?asc=u" },
+                { archivo: "men6.jpg", nombre: "Graphic T-shirt: Ground Power Gym", link: "https://www.redbubble.com/i/t-shirt/Ground-Power-Gym-by-GraundDSGN/182641578/rfjh?asc=u" }
+            ],
+            "WOMEN": [
+                { archivo: "women1.jpg", nombre: "Racerback Tank Top: Ground Power Gym", link: "https://www.redbubble.com/i/tank-top/Ground-Power-Gym-by-GraundDSGN/182641578/wwtp?asc=u" },
+                { archivo: "women2.jpg", nombre: "Relaxed T-Shirt: NoN Originalis Graund_co", link: "https://www.redbubble.com/i/t-shirt/NoN-Originalis-Graund_co-by-GraundDSGN/182652725/xmcg?asc=u" },
+                { archivo: "women3.jpg", nombre: "A-Line Dress: Graund Be strong to move the world", link: "https://www.redbubble.com/i/dress/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/3yb7?asc=u" },
+                { archivo: "women4.jpg", nombre: "Fitted Scoop T-Shirt: GRAUND_SIMPLE_LOGO", link: "https://www.redbubble.com/i/t-shirt/GRAUND_SIMPLE_LOGO-by-GraundDSGN/182652280/nz95?asc=u" },
+                { archivo: "women5.jpg", nombre: "Relaxed T-Shirt: Street Rider for Riders", link: "https://www.redbubble.com/i/t-shirt/Street-Rider-for-Riders-by-GraundDSGN/182672201/xmcg?asc=u" },
+                { archivo: "women6.jpg", nombre: "Boxy T-Shirt: No More stickers please", link: "https://www.redbubble.com/i/t-shirt/No-More-stickers-please-by-GraundDSGN/182651606/xtkm?asc=u" }
+            ],
+            "CAPS": [
+                { archivo: "caps1.jpg", nombre: "Cap: GRAUND_SIMPLE_LOGO", link: "https://www.redbubble.com/i/hat/GRAUND_SIMPLE_LOGO-by-GraundDSGN/182652280/4sgw" },
+                { archivo: "caps2.jpg", nombre: "Bucket hat: Ground SkullandBulls (Negative)", link: "https://www.redbubble.com/i/bucket-hat/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/3vy7?asc=u" },
+                { archivo: "caps3.jpg", nombre: "Baseball Cap: Ground SkullandBulls (Negative)", link: "https://www.redbubble.com/i/hat/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/4sgw?asc=u" },
+                { archivo: "caps4.jpg", nombre: "Dad Hat: Ground Power Gym", link: "https://www.redbubble.com/i/hat/Ground-Power-Gym-by-GraundDSGN/182641578/fce2?asc=u" },
+                { archivo: "caps5.jpg", nombre: "Baseball Cap: NoN Originalis (white)", link: "https://www.redbubble.com/i/hat/NoN-Originalis-white-by-GraundDSGN/182652930/4sgw?asc=u" },
+                { archivo: "caps6.jpg", nombre: "Dad Hat: Graund Be strong to move the world", link: "https://www.redbubble.com/i/hat/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/fce2?asc=u" }
+            ],
+            "SOCKS": [
+                { archivo: "socks1.jpg", nombre: "Ground SkullandBulls (Negative)", link: "https://www.redbubble.com/i/socks/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/sr4q" },
+                { archivo: "socks2.jpg", nombre: "NoN Originalis (White)", link: "https://www.redbubble.com/i/socks/NoN-Originalis-white-by-GraundDSGN/182652930/sr4q" },
+                { archivo: "socks3.jpg", nombre: "Socks: Ride Now", link: "https://www.redbubble.com/i/socks/Ride-Now-by-GraundDSGN/182672697/sr4q" },
+                { archivo: "socks4.jpg", nombre: "Socks: NoN Originalis Graund_co", link: "https://www.redbubble.com/i/socks/NoN-Originalis-Graund_co-by-GraundDSGN/182652725/sr4q" },
+                { archivo: "socks5.jpg", nombre: "Socks: Street Rider for Riders", link: "https://www.redbubble.com/i/socks/Street-Rider-for-Riders-by-GraundDSGN/182672201/sr4q" },
+                { archivo: "socks6.jpg", nombre: "Socks: Ground SkullandBulls (Negative)", link: "https://www.redbubble.com/i/socks/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/sr4q" }
+            ],
+            "BACKPACK": [
+                { archivo: "backpack1.jpg", nombre: "Backpack: No More stickers please", link: "https://www.redbubble.com/i/backpack/No-More-stickers-please-by-GraundDSGN/182651606/e55z?asc=u" },
+                { archivo: "backpack2.jpg", nombre: "Backpack: Ground Skull&Bulls (Negative)", link: "https://www.redbubble.com/i/backpack/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/e55z" },
+                { archivo: "backpack3.jpg", nombre: "Backpack: Graund Skull&Bulls", link: "https://www.redbubble.com/i/backpack/Graund-SkullandBulls-by-GraundDSGN/182627545/e55z" },
+                { archivo: "backpack4.jpg", nombre: "Backpack: Ride Now", link: "https://www.redbubble.com/i/backpack/Ride-Now-by-GraundDSGN/182672697/e55z?asc=u" },
+                { archivo: "backpack5.jpg", nombre: "Backpack: GRAUND_SIMPLE_LOGO", link: "https://www.redbubble.com/i/backpack/GRAUND_SIMPLE_LOGO-by-GraundDSGN/182652280/e55z?asc=u" },
+                { archivo: "backpack6.jpg", nombre: "Backpack: Ground Power Gym", link: "https://www.redbubble.com/i/backpack/Ground-Power-Gym-by-GraundDSGN/182641578/e55z?asc=u" }
+            ],
+            "CASES": [
+                { archivo: "cases1.jpg", nombre: "iPhone Soft Case: Ground Power Gym", link: "https://www.redbubble.com/i/iphone-case/Ground-Power-Gym-by-GraundDSGN/182641578/2x65?asc=u" },
+                { archivo: "cases2.jpg", nombre: "iPhone Magsafe Tough Case: No More stickers please", link: "https://www.redbubble.com/i/iphone-case/No-More-stickers-please-by-GraundDSGN/182651606/c4kx?asc=u" },
+                { archivo: "cases3.jpg", nombre: "iPhone Snap Case: Graund Be strong to move the world", link: "https://www.redbubble.com/i/iphone-case/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/hvg3?asc=u" },
+                { archivo: "cases4.jpg", nombre: "iPhone Magsafe Tough Case: Ground Skull&Bulls Negative", link: "https://www.redbubble.com/i/iphone-case/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/c4kx?asc=u" },
+                { archivo: "cases5.jpg", nombre: "iPhone Soft Case: Ground Skull&Bulls (Negative)", link: "https://www.redbubble.com/i/iphone-case/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/2x65?asc=u" },
+                { archivo: "cases6.jpg", nombre: "Samsung Galaxy Soft Case: NoN Originalis Graund_co", link: "https://www.redbubble.com/i/samsung-case/NoN-Originalis-Graund_co-by-GraundDSGN/182652725/wu9t?asc=u" }
+            ],
+            "PC&LAPTOP": [
+                { archivo: "pc&laptop1.jpg", nombre: "Mouse Pad: No More stickers please", link: "https://www.redbubble.com/i/mouse-pad/No-More-stickers-please-by-GraundDSGN/182651606/2mh5?asc=u" },
+                { archivo: "pc&laptop2.jpg", nombre: "Laptop Sleeve: No More stickers please", link: "https://www.redbubble.com/i/laptop-case/No-More-stickers-please-by-GraundDSGN/182651606/uh7r?asc=u" },
+                { archivo: "pc&laptop3.jpg", nombre: "Mouse Pad: Ground Skull&Bulls (Negative)", link: "https://www.redbubble.com/i/mouse-pad/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/2mh5?asc=u" },
+                { archivo: "pc&laptop4.jpg", nombre: "Desk Mat: Graund Be strong to move the world", link: "https://www.redbubble.com/i/mouse-pad/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/4qvw?asc=u" },
+                { archivo: "pc&laptop5.jpg", nombre: "Desk Mat: Street Rider for Riders", link: "https://www.redbubble.com/i/mouse-pad/Street-Rider-for-Riders-by-GraundDSGN/182672201/4qvw?asc=u" },
+                { archivo: "pc&laptop6.jpg", nombre: "Mouse Pad: Ground Power Gym", link: "https://www.redbubble.com/i/mouse-pad/Ground-Power-Gym-by-GraundDSGN/182641578/2mh5?asc=u" }
+            ],
+            "PILLOW": [
+                { archivo: "pillow1.jpg", nombre: "Throw Pillow: Ground Power Gym", link: "https://www.redbubble.com/i/throw-pillow/Ground-Power-Gym-by-GraundDSGN/182641578/xwxm?asc=u" },
+                { archivo: "pillow2.jpg", nombre: "Throw Pillow: No More stickers please", link: "https://www.redbubble.com/i/throw-pillow/No-More-stickers-please-by-GraundDSGN/182651606/xwxm?asc=u" },
+                { archivo: "pillow3.jpg", nombre: "Throw Pillow: Graund Be strong to move the world", link: "https://www.redbubble.com/i/throw-pillow/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/xwxm?asc=u" },
+                { archivo: "pillow4.jpg", nombre: "Throw Pillow: Graund Skull&Bulls", link: "https://www.redbubble.com/i/throw-pillow/Graund-SkullandBulls-by-GraundDSGN/182627545/xwxm?asc=u" },
+                { archivo: "pillow5.jpg", nombre: "Throw Pillow: Ground Skull&Bulls (Negative)", link: "https://www.redbubble.com/i/throw-pillow/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/xwxm?asc=u" },
+                { archivo: "pillow6.jpg", nombre: "Throw Pillow: NoN Originalis Graund_co", link: "https://www.redbubble.com/i/throw-pillow/NoN-Originalis-Graund_co-by-GraundDSGN/182652725/xwxm?asc=u" }
+            ],
+            "STICKERS": [
+                { archivo: "stickers1.jpg", nombre: "Glossy Sticker: No More stickers please", link: "https://www.redbubble.com/i/sticker/No-More-stickers-please-by-GraundDSGN/182651606/r3lj?asc=u" },
+                { archivo: "stickers2.jpg", nombre: "Glossy Sticker: Graund Be strong to move the world", link: "https://www.redbubble.com/i/sticker/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/r3lj?asc=u" },
+                { archivo: "stickers3.jpg", nombre: "Holographic Sticker: Graund Skull&Bulls", link: "https://www.redbubble.com/i/holographic-sticker/Graund-SkullandBulls-by-GraundDSGN/182627545/mtb4?asc=u" },
+                { archivo: "stickers4.jpg", nombre: "Holographic Sticker: Street Rider for Riders", link: "https://www.redbubble.com/i/holographic-sticker/Street-Rider-for-Riders-by-GraundDSGN/182672201/mtb4?asc=u" },
+                { archivo: "stickers5.jpg", nombre: "Glossy Sticker: Ride Now", link: "https://www.redbubble.com/i/sticker/Ride-Now-by-GraundDSGN/182672697/r3lj?asc=u" },
+                { archivo: "stickers6.jpg", nombre: "Glossy Sticker: NoN Originalis Graund_co", link: "https://www.redbubble.com/i/sticker/NoN-Originalis-Graund_co-by-GraundDSGN/182652725/r3lj?asc=u" }
+            ],
+            "PINS": [
+                { archivo: "pins1.jpg", nombre: "Pin: NoN Originalis Graund_co", link: "https://www.redbubble.com/i/pin/NoN-Originalis-Graund_co-by-GraundDSGN/182652725/lw9c?asc=u" },
+                { archivo: "pins2.jpg", nombre: "Pin: No More stickers please", link: "https://www.redbubble.com/i/pin/No-More-stickers-please-by-GraundDSGN/182651606/lw9c?asc=u" },
+                { archivo: "pins3.jpg", nombre: "Pin: Ground Power Gym", link: "https://www.redbubble.com/i/pin/Ground-Power-Gym-by-GraundDSGN/182641578/lw9c?asc=u" },
+                { archivo: "pins4.jpg", nombre: "Pin: Graund Be strong to move the world", link: "https://www.redbubble.com/i/pin/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/lw9c?asc=u" },
+                { archivo: "pins5.jpg", nombre: "Pin: Graund Skull&Bulls", link: "https://www.redbubble.com/i/pin/Graund-SkullandBulls-by-GraundDSGN/182627545/lw9c?asc=u" },
+                { archivo: "pins6.jpg", nombre: "Pin: Street Rider for Riders", link: "https://www.redbubble.com/i/pin/Street-Rider-for-Riders-by-GraundDSGN/182672201/lw9c?asc=u" }
+            ],
+            "MAGNETS": [
+                { archivo: "magnets1.jpg", nombre: "Magnet: Street Rider for Riders", link: "https://www.redbubble.com/i/magnet/Street-Rider-for-Riders-by-GraundDSGN/182672201/9gzh?asc=u" },
+                { archivo: "magnets2.jpg", nombre: "Magnet: NoN Originalis (white)", link: "https://www.redbubble.com/i/magnet/NoN-Originalis-white-by-GraundDSGN/182652930/9gzh?asc=u" },
+                { archivo: "magnets3.jpg", nombre: "Magnet: Ride Now", link: "https://www.redbubble.com/i/magnet/Ride-Now-by-GraundDSGN/182672697/9gzh?asc=u" },
+                { archivo: "magnets4.jpg", nombre: "Magnet: Graund Skull&Bulls", link: "https://www.redbubble.com/i/magnet/Graund-SkullandBulls-by-GraundDSGN/182627545/9gzh?asc=u" },
+                { archivo: "magnets5.jpg", nombre: "Magnet: No More stickers please", link: "https://www.redbubble.com/i/magnet/No-More-stickers-please-by-GraundDSGN/182651606/9gzh?asc=u" },
+                { archivo: "magnets6.jpg", nombre: "Magnet: GRAUND_SIMPLE_LOGO", link: "https://www.redbubble.com/i/magnet/GRAUND_SIMPLE_LOGO-by-GraundDSGN/182652280/9gzh?asc=u" }
+            ]
+        };
+
+        const bannerLinks = {
+            1: "https://www.redbubble.com/es/shop/ap/182651606",
+            2: "https://www.redbubble.com/es/shop/ap/182652280",
+            3: "https://www.redbubble.com/es/shop/ap/182642089"
+        };
+
+        let intervaloCarrusel;
+        let currentIndex = 0;
+        let tabActivaActual = null;
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            cargarBannersAutomaticos();
+            inicializarEventosTabs();
+            renderizarTodasLasSecciones();
+        });
+
+        async function cargarBannersAutomaticos() {
+            const track = document.getElementById("sliderTrack");
+            track.innerHTML = "";
+            const maxBanners = 10;
+            let bannersCargados = 0;
+
+            for (let i = 1; i <= maxBanners; i++) {
+                const rutaImagen = `banners/banner${i}.jpg`; 
+                const existe = await verificarArchivo(rutaImagen);
+                if (existe) {
+                    bannersCargados++;
+                    const linkBanner = bannerLinks[i] || "https://www.redbubble.com/people/graunddsgn/shop";
+                    
+                    const slide = document.createElement("div");
+                    slide.className = "slide";
+                    slide.innerHTML = `
+                        <img src="${rutaImagen}" alt="Banner ${i}">
+                        <a href="${linkBanner}" target="_blank" class="banner-go-btn">GO GO GO</a>
+                    `;
+                    track.appendChild(slide);
+                }
+            }
+
+            if (bannersCargados === 0) {
+                const slide = document.createElement("div");
+                slide.className = "slide";
+                slide.innerHTML = `
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&auto=format&fit=crop&q=80" alt="Banner por defecto">
+                    <a href="https://www.redbubble.com/people/graunddsgn/shop" target="_blank" class="banner-go-btn">GO GO GO</a>
+                `;
+                track.appendChild(slide);
+            }
+
+            currentIndex = 0;
+            actualizarCarrusel();
+            iniciarCarruselAutomatico();
+        }
+
+        function verificarArchivo(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
+
+        function inicializarEventosTabs() {
+            const links = document.querySelectorAll(".nav-links a");
+            links.forEach((link) => {
+                const tabKey = link.getAttribute("data-id");
+                link.onclick = (e) => {
+                    e.preventDefault();
+                    seleccionarTab(link, tabKey);
+                };
+            });
+        }
+
+        function seleccionarTab(elemento, tabKey) {
+            const panel = document.getElementById("dynamicPanel");
+            const optionsContainer = document.getElementById("panelOptions");
+            const links = document.querySelectorAll(".nav-links a");
+
+            if (tabActivaActual === tabKey && panel.classList.contains("open") && panel.getAttribute("data-tipo") === "sub") {
+                cerrarPanelDinamico();
+                return;
+            }
+
+            panel.setAttribute("data-tipo", "sub");
+            links.forEach(l => l.classList.remove("active"));
+            if(elemento) elemento.classList.add("active");
+            tabActivaActual = tabKey;
+
+            optionsContainer.innerHTML = "";
+            const subopciones = tabsFijas[tabKey] || [];
+            subopciones.forEach(opTexto => {
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.textContent = opTexto;
+                a.href = "#";
+
+                a.onclick = (ev) => {
+                    ev.preventDefault();
+                    document.querySelectorAll(".dynamic-links a").forEach(el => el.classList.remove("active-sub"));
+                    a.classList.add("active-sub");
+                    desplazarASeccion(opTexto);
+                };
+
+                li.appendChild(a);
+                optionsContainer.appendChild(li);
+            });
+
+            panel.classList.add("open");
+        }
+
+        /* LÓGICA DE MENÚ MÓVIL PARA CATEGORÍAS PRINCIPALES */
+        function abrirMenuPrincipalMovil() {
+            const panel = document.getElementById("dynamicPanel");
+            const optionsContainer = document.getElementById("panelOptions");
+
+            if (panel.classList.contains("open") && panel.getAttribute("data-tipo") === "principal") {
+                cerrarPanelDinamico();
+                return;
+            }
+
+            panel.setAttribute("data-tipo", "principal");
+            optionsContainer.innerHTML = "";
+
+            const categoriasPrincipales = Object.keys(tabsFijas);
+            categoriasPrincipales.forEach(catKey => {
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.textContent = catKey;
+                a.href = "#";
+                a.onclick = (ev) => {
+                    ev.preventDefault();
+                    mostrarSubcategoriasMovil(catKey, a);
+                };
+                li.appendChild(a);
+                optionsContainer.appendChild(li);
+            });
+
+            panel.classList.add("open");
+        }
+
+        function mostrarSubcategoriasMovil(catKey, elementoA) {
+            document.querySelectorAll(".dynamic-links a").forEach(el => el.classList.remove("active-sub"));
+            elementoA.classList.add("active-sub");
+
+            const optionsContainer = document.getElementById("panelOptions");
+            optionsContainer.innerHTML = "";
+
+            const liVolver = document.createElement("li");
+            const aVolver = document.createElement("a");
+            aVolver.textContent = "← BACK";
+            aVolver.style.color = "#e60023";
+            aVolver.onclick = (ev) => {
+                ev.preventDefault();
+                abrirMenuPrincipalMovil();
+            };
+            liVolver.appendChild(aVolver);
+            optionsContainer.appendChild(liVolver);
+
+            const subopciones = tabsFijas[catKey] || [];
+            subopciones.forEach(opTexto => {
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.textContent = opTexto;
+                a.href = "#";
+                a.onclick = (ev) => {
+                    ev.preventDefault();
+                    document.querySelectorAll(".dynamic-links a").forEach(el => el.classList.remove("active-sub"));
+                    a.classList.add("active-sub");
+                    desplazarASeccion(opTexto);
+                    cerrarPanelDinamico();
+                };
+                li.appendChild(a);
+                optionsContainer.appendChild(li);
+            });
+        }
+
+        function cerrarPanelDinamico() {
+            const panel = document.getElementById("dynamicPanel");
+            panel.classList.remove("open");
+            panel.setAttribute("data-tipo", "");
+            tabActivaActual = null;
+            document.querySelectorAll(".nav-links a").forEach(l => l.classList.remove("active"));
+        }
+
+        function desplazarASeccion(nombreSubcategoria) {
+            const idSeccion = "seccion-" + nombreSubcategoria.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            const elementoSeccion = document.getElementById(idSeccion);
+            if (elementoSeccion) {
+                elementoSeccion.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function renderizarTodasLasSecciones() {
+            const contenedor = document.getElementById("categoriasContainer");
+            contenedor.innerHTML = "";
+
+            const subcategoriasList = [];
+            Object.values(tabsFijas).forEach(subArray => {
+                subArray.forEach(sub => subcategoriasList.push(sub));
+            });
+
+            const subcatsOrdenadas = subcategoriasList.filter(sub => sub !== "OUR STORY");
+            subcatsOrdenadas.push("OUR STORY");
+
+            subcatsOrdenadas.forEach(subcategoria => {
+                const idSeccion = "seccion-" + subcategoria.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                const idTrack = "track-" + subcategoria.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+                const sectionDiv = document.createElement("div");
+                sectionDiv.className = "categoria-section";
+                sectionDiv.id = idSeccion;
+
+                const titleH2 = document.createElement("h2");
+                titleH2.className = "categoria-titulo";
+                titleH2.textContent = subcategoria;
+                sectionDiv.appendChild(titleH2);
+
+                if (subcategoria === "OUR STORY") {
+                    const aboutBox = document.createElement("div");
+                    aboutBox.className = "about-us-section";
+                    aboutBox.innerHTML = `
+                        <div class="about-us-content">
+                            <p>Welcome to <strong>Graund Dsgn</strong>. We are a creative design brand dedicated to crafting bold, authentic graphics and apparel for riders, creators, and independent spirits who believe that inner strength fuels external change.</p>
+                            
+                            <div class="about-quote-box">
+                                <p>"Give me a lever long enough and a fulcrum on which to place it, and I shall move the world."</p>
+                                <span>— Archimedes</span>
+                            </div>
+
+                            <p>To move the world, the power must first be built from within. True strength isn't just about force; it is a combination of resilience, clarity, and unwavering purpose, embodying our core mantra: <strong>"Be strong to move the world."</strong></p>
+
+                            <div class="about-columns">
+                                <div class="about-column-card">
+                                    <h3>CULTIVATING INNER STRENGTH</h3>
+                                    <ul class="about-list">
+                                        <li><strong>Resilience:</strong> The ability to bend without breaking when facing unexpected pressures.</li>
+                                        <li><strong>Focus:</strong> Directing your energy toward a single, meaningful point of impact rather than scattering your efforts.</li>
+                                        <li><strong>Consistency:</strong> Applying steady, daily pressure that compounds into monumental change over time.</li>
+                                    </ul>
+                                </div>
+                                <div class="about-column-card">
+                                    <h3>HOW TO APPLY YOUR FORCE</h3>
+                                    <ul class="about-list">
+                                        <li><strong>Find Your Fulcrum:</strong> Identify your core values, your unique strengths, or the exact point of leverage in your situation where minimal effort yields maximum results.</li>
+                                        <li><strong>Build Your Lever:</strong> Equip yourself with the right knowledge, skills, and network to amplify your natural capabilities.</li>
+                                        <li><strong>Take Action:</strong> Stand firm, apply pressure, and trust the momentum you create.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <p style="margin-top: 30px; font-size: 14px; color: #555;">For your security and peace of mind, all our official merchandise is manufactured and fulfilled globally through Redbubble.</p>
+                        </div>
+                    `;
+                    sectionDiv.appendChild(aboutBox);
+                } else {
+                    const listaProds = productosConfig[subcategoria] || [];
+
+                    if (listaProds.length === 0) {
+                        const msg = document.createElement("p");
+                        msg.style.cssText = "color: #888; font-style: italic; font-size: 14px; text-align: center;";
+                        msg.textContent = `No products added yet for ${subcategoria}.`;
+                        sectionDiv.appendChild(msg);
+                    } else {
+                        const wrapperDiv = document.createElement("div");
+                        wrapperDiv.className = "category-carousel-wrapper";
+
+                        const fileBtnPrev = document.createElement("button");
+                        fileBtnPrev.className = "cat-slider-btn prev";
+                        fileBtnPrev.innerHTML = "&#10094;";
+                        fileBtnPrev.onclick = () => desplazarCarruselCategoria(idTrack, -1);
+
+                        const trackDiv = document.createElement("div");
+                        trackDiv.className = "category-carousel-track";
+                        trackDiv.id = idTrack;
+
+                        listaProds.forEach(r => {
+                            const rutaImagen = `${subcategoria}/${r.archivo}`;
+                            const d = document.createElement("div");
+                            d.className = "pin-card";
+                            d.innerHTML = `
+                                <div class="pin-card-img-container">
+                                    <img src="${rutaImagen}" alt="${r.nombre}" onerror="this.remove()">
+                                </div>
+                                <div class="product-name-label" title="${r.nombre}">${r.nombre}</div>
+                                <div class="pin-footer">
+                                    <a href="${r.link}" target="_blank" class="btn-shop">SEE</a>
+                                </div>`;
+                            trackDiv.appendChild(d);
+                        });
+
+                        const seeMoreCard = document.createElement("a");
+                        seeMoreCard.className = "pin-card see-more-card";
+                        seeMoreCard.href = seeMoreLinks[subcategoria] || "https://www.redbubble.com/people/graunddsgn/shop";
+                        seeMoreCard.target = "_blank";
+                        seeMoreCard.innerHTML = `<span class="see-more-text">SEE MORE</span>`;
+                        trackDiv.appendChild(seeMoreCard);
+
+                        const fileBtnNext = document.createElement("button");
+                        fileBtnNext.className = "cat-slider-btn next";
+                        fileBtnNext.innerHTML = "&#10095;";
+                        fileBtnNext.onclick = () => desplazarCarruselCategoria(idTrack, 1);
+
+                        wrapperDiv.appendChild(fileBtnPrev);
+                        wrapperDiv.appendChild(trackDiv);
+                        wrapperDiv.appendChild(fileBtnNext);
+                        sectionDiv.appendChild(wrapperDiv);
+                    }
+                }
+
+                contenedor.appendChild(sectionDiv);
+            });
+        }
+
+        function desplazarCarruselCategoria(trackId, direccion) {
+            const track = document.getElementById(trackId);
+            if (!track) return;
+            track.scrollBy({ left: 260 * direccion, behavior: 'smooth' });
+        }
+
+        function actualizarCarrusel() {
+            const track = document.getElementById('sliderTrack');
+            if (!track) return;
+            const slides = track.children;
+            if (slides.length === 0) return;
+            if (currentIndex >= slides.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = slides.length - 1;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        function cambiarSlide(direccion) {
+            currentIndex += direccion;
+            actualizarCarrusel();
+            iniciarCarruselAutomatico();
+        }
+
+        function iniciarCarruselAutomatico() {
+            if(intervaloCarrusel) clearInterval(intervaloCarrusel);
+            const track = document.getElementById('sliderTrack');
+            if (!track || track.children.length <= 1) return;
+            intervaloCarrusel = setInterval(() => {
+                currentIndex++;
+                actualizarCarrusel();
+            }, 4000);
+        }
+
+        function pausarCarrusel() {
+            if(intervaloCarrusel) clearInterval(intervaloCarrusel);
+        }
+    </script>
+</body>
+</html>
