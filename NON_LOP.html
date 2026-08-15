@@ -21,12 +21,31 @@
             top: 0;
             width: 100%;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
             padding: 15px 25px;
             background-color: rgba(13, 13, 13, 0.95);
             border-bottom: 1px solid #222222;
             z-index: 1000;
+        }
+
+        .back-button {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            background-color: #222222;
+            color: #ffffff;
+            border: 1px solid #444444;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #333333;
+            border-color: #666666;
         }
 
         .drop-status-badge {
@@ -86,6 +105,7 @@
 <body>
 
     <nav class="top-nav">
+        <a href="index.html" class="back-button">BACK TO GRAUND</a>
         <div id="statusBadge" class="drop-status-badge status-closed">DROP CLOSED</div>
     </nav>
 
