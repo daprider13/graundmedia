@@ -163,6 +163,40 @@
             color: #000000;
         }
 
+        /* ICONOS DE REDES SOCIALES */
+        .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            color: #222222;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            transition: transform 0.2s;
+        }
+
+        .social-icons a.disabled-icon {
+            cursor: default;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .social-icons a svg {
+            width: 18px;
+            height: 18px;
+            fill: #222222;
+            transition: fill 0.2s;
+        }
+
+        .social-icons a:not(.disabled-icon):hover svg { fill: #e60023; }
+        .social-icons a:not(.disabled-icon):hover { transform: translateY(-1px); }
+
         .btn-nav-shop {
             background-color: #e60023;
             color: white;
@@ -635,6 +669,21 @@
         <div class="nav-right">
             <!-- BOTÓN [NON] DROPS ENLAZADO A NON_LOP.html -->
             <a href="NON_LOP.html" class="btn-drops">[NON] DROPS</a>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com/graund_clothing" target="_blank" title="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a class="disabled-icon" title="X (Desactivado)">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a class="disabled-icon" title="Facebook (Desactivado)">
+                    <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.37 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.592 9 4.75V8z"/></svg>
+                </a>
+                <a class="disabled-icon" title="YouTube (Desactivado)">
+                    <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
             <a href="https://www.redbubble.com/people/graunddsgn/shop" target="_blank" class="btn-nav-shop">SHOP</a>
         </div>
     </nav>
@@ -724,7 +773,7 @@
                 { archivo: "cloth3.jpg", nombre: "T-shirt Ride Now", link: "https://www.redbubble.com/i/t-shirt/Ride-Now-by-GraundDSGN/182672697/nz95?asc=u" },
                 { archivo: "cloth4.jpg", nombre: "Dress Ride Now", link: "https://www.redbubble.com/i/dress/Ride-Now-by-GraundDSGN/182672697/3yb7?asc=u" },
                 { archivo: "cloth5.jpg", nombre: "T-shirt Be Strong to Move the World", link: "https://www.redbubble.com/i/t-shirt/Be-Strong-to-Move-the-World-by-GraundDSGN/182642419/2cn5?asc=u" },
-                { archivo: "cloth6.jpg", nombre: "+_+", link: "x" }
+                { archivo: "cloth6.jpg", nombre: "Boxy T-Shirt ephemerALL", link: "https://www.redbubble.com/i/t-shirt/ephemerALL-by-graund-by-GraundDSGN/182987544/xtkm?asc=u" }
             ],
             "MEN": [
                 { archivo: "men1.jpg", nombre: "Oversized T-shirt: No More stickers please", link: "https://www.redbubble.com/i/t-shirt/No-More-stickers-please-by-GraundDSGN/182651606/rh5j" },
@@ -732,7 +781,7 @@
                 { archivo: "men3.jpg", nombre: "Premium Oversized Sweatshirt: Street Rider for Riders", link: "https://www.redbubble.com/i/sweatshirt/Street-Rider-for-Riders-by-GraundDSGN/182672201/cdux?asc=u" },
                 { archivo: "men4.jpg", nombre: "T-shirt Ground Power Gym", link: "https://www.redbubble.com/i/t-shirt/Ground-Power-Gym-by-GraundDSGN/182641578/z4fd?asc=u" },
                 { archivo: "men5.jpg", nombre: "T-shirt Ground Power Gym", link: "https://www.redbubble.com/i/t-shirt/Ground-Power-Gym-by-GraundDSGN/182641578/rfjh?asc=u" },
-                { archivo: "men6.jpg", nombre: "+_+", link: "x" }
+                { archivo: "men6.jpg", nombre: "Premium T-Shirt: Funk that S*hit", link: "https://www.redbubble.com/i/t-shirt/Funk-that-S-ht-by-graund-by-GraundDSGN/182830094/e22z?asc=u" }
             ],
             "WOMEN": [
                 { archivo: "women1.jpg", nombre: "Racerback Tank Top: Ground Power Gym", link: "https://www.redbubble.com/i/tank-top/Ground-Power-Gym-by-GraundDSGN/182641578/wwtp?asc=u" },
@@ -740,7 +789,7 @@
                 { archivo: "women3.jpg", nombre: "T-shirt GRAUND_SIMPLE_LOGO", link: "https://www.redbubble.com/i/t-shirt/GRAUND_SIMPLE_LOGO-by-GraundDSGN/182652280/nz95?asc=u" },
                 { archivo: "women4.jpg", nombre: "T-shirt Street Rider for Riders", link: "https://www.redbubble.com/i/t-shirt/Street-Rider-for-Riders-by-GraundDSGN/182672201/xmcg?asc=u" },
                 { archivo: "women5.jpg", nombre: "T-shirt No More stickers please", link: "https://www.redbubble.com/i/t-shirt/No-More-stickers-please-by-GraundDSGN/182651606/xtkm?asc=u" },
-                { archivo: "women6.jpg", nombre: "+_+", link: "x" }
+                { archivo: "women6.jpg", nombre: "A-Line Dress: Black sheep", link: "https://www.redbubble.com/i/dress/black-sheep-by-graund-by-GraundDSGN/183015390/3yb7?asc=u" }
             ],
             "CAPS": [
                 { archivo: "caps1.jpg", nombre: "Cap: GRAUND_SIMPLE_LOGO", link: "https://www.redbubble.com/i/hat/GRAUND_SIMPLE_LOGO-by-GraundDSGN/182652280/4sgw" },
@@ -748,15 +797,15 @@
                 { archivo: "caps3.jpg", nombre: "Baseball Cap: Ground SkullandBulls (Negative)", link: "https://www.redbubble.com/i/hat/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/4sgw?asc=u" },
                 { archivo: "caps4.jpg", nombre: "Dad Hat: Ground Power Gym", link: "https://www.redbubble.com/i/hat/Ground-Power-Gym-by-GraundDSGN/182641578/fce2?asc=u" },
                 { archivo: "caps5.jpg", nombre: "Hat: Graund Be strong to move the world", link: "https://www.redbubble.com/i/hat/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/fce2?asc=u" },
-                { archivo: "caps6.jpg", nombre: "+_+", link: "x" }
+                { archivo: "caps6.jpg", nombre: "Baseball Cap: Black sheep", link: "https://www.redbubble.com/i/hat/black-sheep-by-graund-by-GraundDSGN/183015390/4sgw?asc=u" }
             ],
             "SOCKS": [
                 { archivo: "socks1.jpg", nombre: "Socks: Ground SkullandBulls (Negative)", link: "https://www.redbubble.com/i/socks/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/sr4q" },
                 { archivo: "socks2.jpg", nombre: "Socks: Ride Now", link: "https://www.redbubble.com/i/socks/Ride-Now-by-GraundDSGN/182672697/sr4q" },
                 { archivo: "socks3.jpg", nombre: "Socks: Street Rider for Riders", link: "https://www.redbubble.com/i/socks/Street-Rider-for-Riders-by-GraundDSGN/182672201/sr4q" },
-                { archivo: "socks4.jpg", nombre: "+_+", link: "x" },
-                { archivo: "socks5.jpg", nombre: "0_0", link: "x" },
-                { archivo: "socks6.jpg", nombre: "-_-", link: "x" }
+                { archivo: "socks4.jpg", nombre: "Socks: Black sheep", link: "https://www.redbubble.com/i/socks/black-sheep-by-graund-by-GraundDSGN/183015390/sr4q?asc=u" },
+                { archivo: "socks5.jpg", nombre: "Socks: alien dude goes to work", link: "https://www.redbubble.com/i/socks/alien-dude-goes-to-work_-by-graund-by-GraundDSGN/183015574/sr4q?asc=u" },
+                { archivo: "socks6.jpg", nombre: "Socks: Graund DSGN Signature", link: "https://www.redbubble.com/i/socks/Graund-DSGN-Signature-by-GraundDSGN/183017606/sr4q?asc=u" }
             ],
             "BACKPACK": [
                 { archivo: "backpack1.jpg", nombre: "Backpack: No More stickers please", link: "https://www.redbubble.com/i/backpack/No-More-stickers-please-by-GraundDSGN/182651606/e55z?asc=u" },
@@ -764,7 +813,7 @@
                 { archivo: "backpack3.jpg", nombre: "Backpack: Graund Skull&Bulls", link: "https://www.redbubble.com/i/backpack/Graund-SkullandBulls-by-GraundDSGN/182627545/e55z" },
                 { archivo: "backpack4.jpg", nombre: "Backpack: GRAUND_SIMPLE_LOGO", link: "https://www.redbubble.com/i/backpack/GRAUND_SIMPLE_LOGO-by-GraundDSGN/182652280/e55z?asc=u" },
                 { archivo: "backpack5.jpg", nombre: "Backpack: Ground Power Gym", link: "https://www.redbubble.com/i/backpack/Ground-Power-Gym-by-GraundDSGN/182641578/e55z?asc=u" },
-                { archivo: "backpack6.jpg", nombre: "+_+", link: "x" }
+                { archivo: "backpack6.jpg", nombre: "Backpack: Graund DSGN Signature", link: "https://www.redbubble.com/i/backpack/Graund-DSGN-Signature-by-GraundDSGN/183017606/e55z?asc=u" }
             ],
             "CASES": [
                 { archivo: "cases1.jpg", nombre: "iPhone Soft Case: Ground Power Gym", link: "https://www.redbubble.com/i/iphone-case/Ground-Power-Gym-by-GraundDSGN/182641578/2x65?asc=u" },
@@ -772,7 +821,7 @@
                 { archivo: "cases3.jpg", nombre: "iPhone Snap Case: Graund Be strong to move the world", link: "https://www.redbubble.com/i/iphone-case/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/hvg3?asc=u" },
                 { archivo: "cases4.jpg", nombre: "iPhone Magsafe Tough Case: Ground Skull&Bulls Negative", link: "https://www.redbubble.com/i/iphone-case/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/c4kx?asc=u" },
                 { archivo: "cases5.jpg", nombre: "iPhone Soft Case: Ground Skull&Bulls (Negative)", link: "https://www.redbubble.com/i/iphone-case/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/2x65?asc=u" },
-                { archivo: "cases6.jpg", nombre: "+_+", link: "x" }
+                { archivo: "cases6.jpg", nombre: "iPhone Soft Case: Graund DSGN Signature", link: "https://www.redbubble.com/i/iphone-case/Graund-DSGN-Signature-by-GraundDSGN/183017606/2x65?asc=u" }
             ],
             "PC&LAPTOP": [
                 { archivo: "pc&laptop1.jpg", nombre: "Mouse Pad: No More stickers please", link: "https://www.redbubble.com/i/mouse-pad/No-More-stickers-please-by-GraundDSGN/182651606/2mh5?asc=u" },
@@ -788,7 +837,7 @@
                 { archivo: "pillow3.jpg", nombre: "Throw Pillow: Graund Be strong to move the world", link: "https://www.redbubble.com/i/throw-pillow/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/xwxm?asc=u" },
                 { archivo: "pillow4.jpg", nombre: "Throw Pillow: Graund Skull&Bulls", link: "https://www.redbubble.com/i/throw-pillow/Graund-SkullandBulls-by-GraundDSGN/182627545/xwxm?asc=u" },
                 { archivo: "pillow5.jpg", nombre: "Throw Pillow: Ground Skull&Bulls (Negative)", link: "https://www.redbubble.com/i/throw-pillow/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/xwxm?asc=u" },
-                { archivo: "pillow6.jpg", nombre: "+_+", link: "x" }
+                { archivo: "pillow6.jpg", nombre: "Throw Pillow: Line down", link: "https://www.redbubble.com/i/throw-pillow/line-down-by-Graund-by-GraundDSGN/183017398/xwxm?asc=u" }
             ],
             "STICKERS": [
                 { archivo: "stickers1.jpg", nombre: "Glossy Sticker: No More stickers please", link: "https://www.redbubble.com/i/sticker/No-More-stickers-please-by-GraundDSGN/182651606/r3lj?asc=u" },
@@ -796,7 +845,7 @@
                 { archivo: "stickers3.jpg", nombre: "Holographic Sticker: Graund Skull&Bulls", link: "https://www.redbubble.com/i/holographic-sticker/Graund-SkullandBulls-by-GraundDSGN/182627545/mtb4?asc=u" },
                 { archivo: "stickers4.jpg", nombre: "Holographic Sticker: Street Rider for Riders", link: "https://www.redbubble.com/i/holographic-sticker/Street-Rider-for-Riders-by-GraundDSGN/182672201/mtb4?asc=u" },
                 { archivo: "stickers5.jpg", nombre: "Glossy Sticker: Ride Now", link: "https://www.redbubble.com/i/sticker/Ride-Now-by-GraundDSGN/182672697/r3lj?asc=u" },
-                { archivo: "stickers6.jpg", nombre: "+_+", link: "x" }
+                { archivo: "stickers6.jpg", nombre: "Sticker: Funk that S*hit", link: "https://www.redbubble.com/i/sticker/Funk-that-S-ht-by-graund-by-GraundDSGN/182830094/7sgk?asc=u" }
             ],
             "PINS": [
                 { archivo: "pins1.jpg", nombre: "Pin: No More stickers please", link: "https://www.redbubble.com/i/pin/No-More-stickers-please-by-GraundDSGN/182651606/lw9c?asc=u" },
@@ -804,7 +853,7 @@
                 { archivo: "pins3.jpg", nombre: "Pin: Graund Be strong to move the world", link: "https://www.redbubble.com/i/pin/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/lw9c?asc=u" },
                 { archivo: "pins4.jpg", nombre: "Pin: Graund SkullandBulls", link: "https://www.redbubble.com/i/pin/Graund-SkullandBulls-by-GraundDSGN/182627545/lw9c?asc=u" },
                 { archivo: "pins5.jpg", nombre: "Pin: Street Rider for Riders", link: "https://www.redbubble.com/i/pin/Street-Rider-for-Riders-by-GraundDSGN/182672201/lw9c?asc=u" },
-                { archivo: "pins6.jpg", nombre: "+_+", link: "x" }
+                { archivo: "pins6.jpg", nombre: "Pin: alien dude goes to work", link: "https://www.redbubble.com/i/pin/alien-dude-goes-to-work_-by-graund-by-GraundDSGN/183015574/lw9c?asc=u" }
             ],
             "MAGNETS": [
                 { archivo: "magnets1.jpg", nombre: "Magnet: Street Rider for Riders", link: "https://www.redbubble.com/i/magnet/Street-Rider-for-Riders-by-GraundDSGN/182672201/9gzh?asc=u" },
@@ -812,7 +861,7 @@
                 { archivo: "magnets3.jpg", nombre: "Magnet: Graund SkullandBulls", link: "https://www.redbubble.com/i/magnet/Graund-SkullandBulls-by-GraundDSGN/182627545/9gzh?asc=u" },
                 { archivo: "magnets4.jpg", nombre: "Magnet: No More stickers please", link: "https://www.redbubble.com/i/magnet/No-More-stickers-please-by-GraundDSGN/182651606/9gzh?asc=u" },
                 { archivo: "magnets5.jpg", nombre: "Magnet: GRAUND_SIMPLE_LOGO", link: "https://www.redbubble.com/i/magnet/GRAUND_SIMPLE_LOGO-by-GraundDSGN/182652280/9gzh?asc=u" },
-                { archivo: "magnets6.jpg", nombre: "+_+", link: "x" }
+                { archivo: "magnets6.jpg", nombre: "Magnet: ¿qué? by Graund", link: "https://www.redbubble.com/i/magnet/qu%C3%A9-by-graund-by-GraundDSGN/183014463/9gzh" }
             ]
         };
 
