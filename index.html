@@ -25,7 +25,6 @@
             scroll-behavior: smooth;
         }
 
-        /* BARRA SUPERIOR NEGRA (FLUJO NATURAL PARA EVITAR CORTES) */
         .top-announcement-bar {
             position: relative;
             width: 100%;
@@ -49,7 +48,6 @@
             line-height: 1.4;
         }
 
-        /* NAVBAR PRINCIPAL (STICKY PARA ADAPTACIÓN PERFECTA) */
         .navbar {
             position: sticky;
             top: 0;
@@ -72,7 +70,6 @@
             justify-content: flex-start;
         }
 
-        /* BOTÓN DE MENÚ PARA MÓVILES */
         .mobile-menu-btn {
             display: none;
             background-color: #111111;
@@ -88,7 +85,6 @@
             gap: 6px;
         }
 
-        /* LOGOTIPO CENTRAL */
         .nav-center {
             display: flex;
             align-items: center;
@@ -142,7 +138,6 @@
             justify-content: flex-end;
         }
 
-        /* ICONOS DE REDES SOCIALES */
         .social-icons {
             display: flex;
             align-items: center;
@@ -191,7 +186,6 @@
 
         .btn-nav-shop:hover { background-color: #ad081b; }
 
-        /* PANEL DINÁMICO DE SUB-CATEGORÍAS */
         .dynamic-panel {
             position: sticky;
             top: 75px;
@@ -264,7 +258,6 @@
         }
         .btn-close-panel:hover { background-color: #ad081b; }
 
-        /* SLIDER / BANNER PRINCIPAL */
         .slider-container {
             width: 100%;
             max-width: 1200px;
@@ -309,7 +302,6 @@
         .slider-btn.prev { left: 15px; }
         .slider-btn.next { right: 15px; }
 
-        /* SECCIONES Y PRODUCTOS */
         .categorias-container {
             max-width: 1200px;
             margin: 0 auto 50px auto;
@@ -330,7 +322,6 @@
             text-transform: uppercase;
         }
 
-        /* ESTILOS PARA LA SECCIÓN ABOUT US */
         .about-us-section {
             background: #ffffff;
             border-radius: 16px;
@@ -417,7 +408,6 @@
             margin-bottom: 2px;
         }
 
-        /* ESTILOS PARA LAS TARJETAS DE BLOG EN EL INDEX */
         .blog-preview-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -964,7 +954,7 @@
         document.addEventListener("DOMContentLoaded", async () => {
             cargarBannersAutomaticos();
             inicializarEventosTabs();
-            renderizarTodasLasSecciones();
+            await renderizarTodasLasSecciones();
         });
 
         async function cargarBannersAutomaticos() {
@@ -1143,7 +1133,7 @@
             }
         }
 
-        function renderizarTodasLasSecciones() {
+        async function renderizarTodasLasSecciones() {
             const contenedor = document.getElementById("categoriasContainer");
             contenedor.innerHTML = "";
 
@@ -1155,6 +1145,18 @@
             const subcatsOrdenadas = subcategoriasList.filter(sub => sub !== "OUR STORY" && sub !== "BLOG");
             subcatsOrdenadas.push("OUR STORY");
             subcatsOrdenadas.push("BLOG");
+
+            // Cargar posts.json de forma segura para la home
+            let blogPosts = [];
+            var postsGetter = new XMLHttpRequest();
+	    postsGetter.open('get', 'https://www.graunddsgn.com/posts.json', false);
+	    postsGetter.send();
+
+		if(postsGetter.status == 200)
+		{
+		blogPosts = JSON.parse(postsGetter.responseText);
+		}
+
 
             subcatsOrdenadas.forEach(subcategoria => {
                 const idSeccion = "seccion-" + subcategoria.toLowerCase().replace(/[^a-z0-9]/g, '-');
@@ -1207,19 +1209,16 @@
                     `;
                     sectionDiv.appendChild(aboutBox);
                 } else if (subcategoria === "BLOG") {
-                    // --- DINÁMICO DESDE LOCALSTORAGE ---
-                    let blogPosts = JSON.parse(localStorage.getItem('blog')) || [];
                     const blogPreviewContainer = document.createElement("div");
 
                     if (blogPosts.length === 0) {
                         blogPreviewContainer.innerHTML = `
-                            <p style="color: #666; font-style: italic; font-size: 14px;">No posts found yet. Create posts in the admin panel to show them here.</p>
+                            <p style="color: #666; font-style: italic; font-size: 14px;">No posts found yet. Check back soon for stories and design philosophy.</p>
                         `;
                     } else {
                         const gridDiv = document.createElement("div");
                         gridDiv.className = "blog-preview-grid";
 
-                        // Tomar hasta 3 posts más recientes
                         const postsAMostrar = blogPosts.slice(0, 3);
                         postsAMostrar.forEach(post => {
                             const card = document.createElement("div");
@@ -1238,7 +1237,6 @@
                             gridDiv.appendChild(card);
                         });
 
-                        // Tarjeta 4 "GO TO BLOG"
                         const goToCard = document.createElement("a");
                         goToCard.href = "blog.html";
                         goToCard.className = "blog-preview-card go-to-blog-card";
