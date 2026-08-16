@@ -366,14 +366,13 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", async () => {
+        document.addEventListener("DOMContentLoaded", () => {
             const grid = document.getElementById("postsGrid");
             if (!grid) return;
 
             try {
-                const response = await fetch('posts.json');
-                if (!response.ok) throw new Error('No se pudo cargar el archivo de posts.');
-                const blogPosts = await response.json();
+                // MODIFICACIÓN: Carga directa desde localStorage usando la clave 'blog'
+                const blogPosts = JSON.parse(localStorage.getItem('blog')) || [];
 
                 grid.innerHTML = "";
 

@@ -1208,7 +1208,7 @@
                     sectionDiv.appendChild(aboutBox);
                 } else if (subcategoria === "BLOG") {
                     // --- DINÁMICO DESDE LOCALSTORAGE ---
-                    let blogPosts = JSON.parse(localStorage.getItem('graund_posts')) || [];
+                    let blogPosts = JSON.parse(localStorage.getItem('blog')) || [];
                     const blogPreviewContainer = document.createElement("div");
 
                     if (blogPosts.length === 0) {

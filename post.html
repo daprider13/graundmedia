@@ -316,15 +316,14 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", async () => {
+        document.addEventListener("DOMContentLoaded", () => {
             const contentContainer = document.getElementById("singlePostContent");
             const urlParams = new URLSearchParams(window.location.search);
             const postId = parseInt(urlParams.get('id'));
 
             try {
-                const response = await fetch('posts.json');
-                if (!response.ok) throw new Error('No se pudo cargar el archivo de posts.');
-                const blogPosts = await response.json();
+                // MODIFICACIÓN: Carga directa desde localStorage usando la clave 'blog'
+                const blogPosts = JSON.parse(localStorage.getItem('blog')) || [];
 
                 const post = blogPosts.find(p => p.id === postId);
 
