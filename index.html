@@ -142,27 +142,6 @@
             justify-content: flex-end;
         }
 
-        /* BOTÓN [NON] DROPS */
-        .btn-drops {
-            background-color: #000000;
-            color: #ff3333;
-            border: 1px solid #ff3333;
-            padding: 6px 12px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-            text-transform: uppercase;
-        }
-
-        .btn-drops:hover {
-            background-color: #ff3333;
-            color: #000000;
-        }
-
         /* ICONOS DE REDES SOCIALES */
         .social-icons {
             display: flex;
@@ -438,6 +417,121 @@
             margin-bottom: 2px;
         }
 
+        /* ESTILOS PARA LAS TARJETAS DE BLOG EN EL INDEX */
+        .blog-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+            align-items: stretch;
+        }
+
+        .blog-preview-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eaeaea;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease;
+        }
+
+        .blog-preview-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .blog-preview-img {
+            width: 100%;
+            height: 180px;
+            background-color: #d1d5db;
+            overflow: hidden;
+        }
+
+        .blog-preview-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .blog-preview-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .blog-preview-meta {
+            font-size: 11px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .blog-preview-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111;
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+        }
+
+        .blog-preview-excerpt {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-blog-read {
+            background-color: #e60023;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            align-self: flex-start;
+            transition: background 0.2s;
+        }
+
+        .btn-blog-read:hover {
+            background-color: #ad081b;
+        }
+
+        .blog-preview-card.go-to-blog-card {
+            background-color: #e60023;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 40px 20px;
+            text-align: center;
+            min-height: 312px;
+        }
+
+        .blog-preview-card.go-to-blog-card:hover {
+            background-color: #ad081b;
+        }
+
+        .go-to-blog-text {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .category-carousel-wrapper {
             position: relative;
             display: flex;
@@ -619,11 +713,9 @@
             .navbar { padding: 10px 15px; grid-template-columns: auto 1fr auto; height: 65px; }
             .dynamic-panel { top: 65px; }
             
-            /* OCULTAR MENÚ ESCRITORIO Y MOSTRAR BOTÓN MENÚ MÓVIL */
             .nav-links { display: none; }
             .mobile-menu-btn { display: flex; }
             
-            /* OCULTAR EL BANNER EN MÓVILES */
             .slider-container { display: none; }
 
             .pin-card { flex: 0 0 160px; }
@@ -635,22 +727,18 @@
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR NEGRA -->
     <div class="top-announcement-bar">
         <div class="top-announcement-text">
             ✨ BUY SAFE: For your security, all your purchases are managed by REDBUBBLE.COM ✨
         </div>
     </div>
 
-    <!-- NAVEGACIÓN PRINCIPAL -->
     <nav class="navbar">
         <div class="nav-left">
-            <!-- Botón de menú para smartphones -->
             <button class="mobile-menu-btn" onclick="abrirMenuPrincipalMovil()">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
                 MENU
             </button>
-            <!-- Links de escritorio -->
             <ul class="nav-links">
                 <li><a data-id="ABOUT US">ABOUT US</a></li>
                 <li><a data-id="CLOTHING">CLOTHING</a></li>
@@ -661,17 +749,13 @@
         </div>
 
         <div class="nav-center">
-            <a href="#" class="brand-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+            <a href="index.html" class="brand-logo">
                 <img src="logo/logo.jpg" alt="Graund Dsgn Logo">
             </a>
         </div>
 
         <div class="nav-right">
-            <!-- BOTÓN [NON] DROPS ENLAZADO A NON_LOP.html -->
-            <a href="NON_LOP.html" class="btn-drops">[NON] DROPS</a>
-
             <div class="social-icons">
-                <!-- ÍCONO TIKTOK AGREGADO -->
                 <a href="https://www.tiktok.com/@graund_clothing" target="_blank" title="TikTok">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.77 0 2.89 2.89 0 0 1 2.89-2.89h.56V7.44h-.56A6.33 6.33 0 1 0 12 18V9.11a6.33 6.33 0 0 0 7.59-2.42z"/>
@@ -694,7 +778,6 @@
         </div>
     </nav>
 
-    <!-- PANEL DINÁMICO DE CATEGORÍAS Y SUB-CATEGORÍAS -->
     <div id="dynamicPanel" class="dynamic-panel" data-tipo="">
         <div class="dynamic-panel-top-row">
             <div class="dynamic-left">
@@ -706,50 +789,46 @@
         </div>
     </div>
 
-    <!-- BANNER CARRUSEL -->
     <div class="slider-container" onmouseenter="pausarCarrusel()" onmouseleave="iniciarCarruselAutomatico()">
         <button class="slider-btn prev" onclick="cambiarSlide(-1)">&#10094;</button>
         <div class="slider-track" id="sliderTrack"></div>
         <button class="slider-btn next" onclick="cambiarSlide(1)">&#10095;</button>
     </div>
 
-    <!-- CONTENEDOR DE PRODUCTOS -->
     <div class="categorias-container" id="categoriasContainer"></div>
 
     <div class="footer-space-1"></div>
     
-    <!-- RECTÁNGULO GRIS OSCURO CON 2 COLUMNAS -->
     <div class="footer-space-2">
         <div class="footer-columns-container">
             <ul class="footer-column">
                 <li><a onclick="desplazarASeccion('OUR STORY')">ABOUT US</a></li>
                 <li><a onclick="desplazarASeccion('OUR STORY')">OUR STORY</a></li>
+                <li><a onclick="desplazarASeccion('BLOG')">BLOG</a></li>
                 <li><a onclick="desplazarASeccion('ALL CLOTHING')">ALL CLOTHING</a></li>
                 <li><a onclick="desplazarASeccion('MEN')">MEN</a></li>
                 <li><a onclick="desplazarASeccion('WOMEN')">WOMEN</a></li>
                 <li><a onclick="desplazarASeccion('CAPS')">CAPS</a></li>
-                <li><a onclick="desplazarASeccion('SOCKS')">SOCKS</a></li>
             </ul>
             <ul class="footer-column">
+                <li><a onclick="desplazarASeccion('SOCKS')">SOCKS</a></li>
                 <li><a onclick="desplazarASeccion('BACKPACK')">BACKPACK</a></li>
                 <li><a onclick="desplazarASeccion('CASES')">CASES</a></li>
                 <li><a onclick="desplazarASeccion('PC&LAPTOP')">PC&LAPTOP</a></li>
                 <li><a onclick="desplazarASeccion('PILLOW')">PILLOW</a></li>
                 <li><a onclick="desplazarASeccion('STICKERS')">STICKERS</a></li>
                 <li><a onclick="desplazarASeccion('PINS')">PINS</a></li>
-                <li><a onclick="desplazarASeccion('MAGNETS')">MAGNETS</a></li>
             </ul>
         </div>
     </div>
 
-    <!-- LEYENDA FINAL -->
     <div class="footer-bottom-legend">
         "BE STRONG TO MOVE THE WORLD" | Graund Design Co. 2026
     </div>
 
     <script>
         const tabsFijas = {
-            "ABOUT US": ["OUR STORY"],
+            "ABOUT US": ["OUR STORY", "BLOG"],
             "CLOTHING": ["ALL CLOTHING", "MEN", "WOMEN"],
             "ACCESORIES": ["CAPS", "SOCKS", "BACKPACK"],
             "COOL STUFF": ["CASES", "PC&LAPTOP", "PILLOW"],
@@ -768,11 +847,12 @@
             "PILLOW": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-pillows",
             "STICKERS": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=all-stickers",
             "PINS": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-pin-button",
-            "MAGNETS": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=u-die-cut-magnet"
+            "MAGNETS": "https://www.redbubble.com/people/GraundDSGN/shop?iaCode=all-stickers"
         };
 
         const productosConfig = {
             "OUR STORY": [],
+            "BLOG": [],
             "ALL CLOTHING": [
                 { archivo: "cloth1.jpg", nombre: "Graphic T-Shirt: Ground Skull&Bulls (Negative)", link: "https://www.redbubble.com/i/t-shirt/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/rfjh" },
                 { archivo: "cloth2.jpg", nombre: "Boxy T-Shirt: Be Strong to Move the World", link: "https://www.redbubble.com/i/t-shirt/Be-Strong-to-Move-the-World-by-GraundDSGN/182642419/xtkm?asc=u" },
@@ -982,7 +1062,6 @@
             panel.classList.add("open");
         }
 
-        /* LÓGICA DE MENÚ MÓVIL PARA CATEGORÍAS PRINCIPALES */
         function abrirMenuPrincipalMovil() {
             const panel = document.getElementById("dynamicPanel");
             const optionsContainer = document.getElementById("panelOptions");
@@ -1073,8 +1152,9 @@
                 subArray.forEach(sub => subcategoriasList.push(sub));
             });
 
-            const subcatsOrdenadas = subcategoriasList.filter(sub => sub !== "OUR STORY");
+            const subcatsOrdenadas = subcategoriasList.filter(sub => sub !== "OUR STORY" && sub !== "BLOG");
             subcatsOrdenadas.push("OUR STORY");
+            subcatsOrdenadas.push("BLOG");
 
             subcatsOrdenadas.forEach(subcategoria => {
                 const idSeccion = "seccion-" + subcategoria.toLowerCase().replace(/[^a-z0-9]/g, '-');
@@ -1126,6 +1206,49 @@
                         </div>
                     `;
                     sectionDiv.appendChild(aboutBox);
+                } else if (subcategoria === "BLOG") {
+                    // --- DINÁMICO DESDE LOCALSTORAGE ---
+                    let blogPosts = JSON.parse(localStorage.getItem('graund_posts')) || [];
+                    const blogPreviewContainer = document.createElement("div");
+
+                    if (blogPosts.length === 0) {
+                        blogPreviewContainer.innerHTML = `
+                            <p style="color: #666; font-style: italic; font-size: 14px;">No posts found yet. Create posts in the admin panel to show them here.</p>
+                        `;
+                    } else {
+                        const gridDiv = document.createElement("div");
+                        gridDiv.className = "blog-preview-grid";
+
+                        // Tomar hasta 3 posts más recientes
+                        const postsAMostrar = blogPosts.slice(0, 3);
+                        postsAMostrar.forEach(post => {
+                            const card = document.createElement("div");
+                            card.className = "blog-preview-card";
+                            card.innerHTML = `
+                                <div class="blog-preview-img">
+                                    <img src="${post.imagen}" alt="${post.titulo}">
+                                </div>
+                                <div class="blog-preview-content">
+                                    <div class="blog-preview-meta">${post.categoria} — ${post.fecha}</div>
+                                    <h4 class="blog-preview-title">${post.titulo}</h4>
+                                    <p class="blog-preview-excerpt">${post.extracto}</p>
+                                    <a href="post.html?id=${post.id}" class="btn-blog-read">Leer artículo</a>
+                                </div>
+                            `;
+                            gridDiv.appendChild(card);
+                        });
+
+                        // Tarjeta 4 "GO TO BLOG"
+                        const goToCard = document.createElement("a");
+                        goToCard.href = "blog.html";
+                        goToCard.className = "blog-preview-card go-to-blog-card";
+                        goToCard.innerHTML = `<span class="go-to-blog-text">GO TO BLOG</span>`;
+                        gridDiv.appendChild(goToCard);
+
+                        blogPreviewContainer.appendChild(gridDiv);
+                    }
+
+                    sectionDiv.appendChild(blogPreviewContainer);
                 } else {
                     const listaProds = productosConfig[subcategoria] || [];
 
