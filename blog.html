@@ -350,7 +350,7 @@
         <main class="blog-main-content">
             <div id="blogListSection">
                 <h2 class="blog-header-title">Latest Posts</h2>
-                <div class="posts-grid" id="postsGrid"></div>
+                <div class="posts-grid" id="postsGrid">Loading...</div>
             </div>
         </main>
     </div>
@@ -366,34 +366,42 @@
     </div>
 
     <script>
-        let blogPosts = JSON.parse(localStorage.getItem('graund_posts')) || [];
-
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", async () => {
             const grid = document.getElementById("postsGrid");
             if (!grid) return;
-            grid.innerHTML = "";
 
-            if (blogPosts.length === 0) {
-                grid.innerHTML = `<p style="color: #666; font-style: italic;">No posts found.</p>`;
-                return;
+            try {
+                const response = await fetch('posts.json');
+                if (!response.ok) throw new Error('No se pudo cargar el archivo de posts.');
+                const blogPosts = await response.json();
+
+                grid.innerHTML = "";
+
+                if (blogPosts.length === 0) {
+                    grid.innerHTML = `<p style="color: #666; font-style: italic;">No posts found.</p>`;
+                    return;
+                }
+
+                blogPosts.forEach(post => {
+                    const card = document.createElement("div");
+                    card.className = "post-card";
+                    card.innerHTML = `
+                        <div class="post-img-container">
+                            <img src="${post.imagen}" alt="${post.titulo}">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">${post.categoria} — ${post.fecha}</div>
+                            <h3 class="post-title">${post.titulo}</h3>
+                            <p class="post-excerpt">${post.extracto}</p>
+                            <a href="post.html?id=${post.id}" class="btn-read-more">Read more</a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                console.error(error);
+                grid.innerHTML = `<p style="color: #e60023; font-style: italic;">Error al cargar las publicaciones del blog.</p>`;
             }
-
-            blogPosts.forEach(post => {
-                const card = document.createElement("div");
-                card.className = "post-card";
-                card.innerHTML = `
-                    <div class="post-img-container">
-                        <img src="${post.imagen}" alt="${post.titulo}">
-                    </div>
-                    <div class="post-content">
-                        <div class="post-meta">${post.categoria} — ${post.fecha}</div>
-                        <h3 class="post-title">${post.titulo}</h3>
-                        <p class="post-excerpt">${post.extracto}</p>
-                        <a href="post.html?id=${post.id}" class="btn-read-more">Read more</a>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
         });
     </script>
 </body>
