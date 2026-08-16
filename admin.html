@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Posts - Graund Dsgn</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            color: #111;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eaeaea;
+        }
+        h1, h2 { text-transform: uppercase; }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        textarea { height: 100px; resize: vertical; }
+        button {
+            background-color: #111;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+        button:hover { background-color: #333; }
+        .btn-danger { background-color: #e60023; }
+        .btn-danger:hover { background-color: #ad081b; }
+        .btn-success { background-color: #28a745; margin-top: 20px; width: 100%; }
+        .btn-success:hover { background-color: #218838; }
+        .post-item {
+            background: #f9f9f9;
+            border: 1px solid #eaeaea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .post-info h3 { margin: 0 0 5px 0; font-size: 16px; }
+        .post-info p { margin: 0; font-size: 13px; color: #666; }
+        .post-actions { display: flex; gap: 10px; }
+        hr { border: 0; border-top: 1px solid #eaeaea; margin: 30px 0; }
+        .export-box {
+            background: #e9f7ef;
+            border: 1px solid #a3e4d7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Gestor de Entradas</h1>
+        <p>Crea, edita o elimina las publicaciones de tu blog fácilmente.</p>
+        
+        <form id="postForm">
+            <input type="hidden" id="postId">
+            <div class="form-group">
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" required>
+            </div>
+            <div class="form-group">
+                <label for="categoria">Categoría</label>
+                <input type="text" id="categoria" required>
+            </div>
+            <div class="form-group">
+                <label for="nombreImagen">Nombre del archivo de imagen (ej. foto1.jpg)</label>
+                <input type="text" id="nombreImagen" placeholder="foto.jpg" required>
+            </div>
+            <div class="form-group">
+                <label for="extracto">Extracto / Resumen</label>
+                <textarea id="extracto" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="contenido">Contenido Completo</label>
+                <textarea id="contenido" required></textarea>
+            </div>
+            <button type="submit" id="btnGuardar">Crear Post</button>
+            <button type="button" id="btnCancelar" style="display:none; background:#777;" onclick="resetForm()">Cancelar</button>
+        </form>
+
+        <div class="export-box">
+            <p style="margin: 0 0 10px 0; font-size: 13px; font-weight: bold; color: #155724;">¿Quieres actualizar tu sitio web público?</p>
+            <button type="button" class="btn-success" onclick="descargarJson()">Descargar archivo posts.json actualizado</button>
+        </div>
+
+        <hr>
+
+        <h2>Entradas Guardadas</h2>
+        <div id="listaPosts">
+            <!-- Aquí se cargarán dinámicamente los posts -->
+        </div>
+    </div>
+
+    <script>
+        let posts = [];
+        try {
+            posts = JSON.parse(localStorage.getItem('blog')) || [];
+        } catch (e) {
+            console.error("Error al leer el localStorage, reiniciando datos...", e);
+            posts = [];
+        }
+
+        const form = document.getElementById('postForm');
+        const listaPosts = document.getElementById('listaPosts');
+        const btnGuardar = document.getElementById('btnGuardar');
+        const btnCancelar = document.getElementById('btnCancelar');
+
+        function guardarEnLocalStorage() {
+            localStorage.setItem('blog', JSON.stringify(posts));
+        }
+
+        function renderizarAdmin() {
+            listaPosts.innerHTML = '';
+            if (posts.length === 0) {
+                listaPosts.innerHTML = '<p style="color: #666; font-style: italic;">No hay entradas registradas.</p>';
+                return;
+            }
+
+            posts.forEach((post) => {
+                const div = document.createElement('div');
+                div.className = 'post-item';
+                div.innerHTML = `
+                    <div class="post-info">
+                        <h3>${post.titulo}</h3>
+                        <p><strong>${post.categoria}</strong> — ${post.fecha}</p>
+                        <p style="font-size: 10px; color: #999;">Imagen: ${post.imagen}</p>
+                    </div>
+                    <div class="post-actions">
+                        <button type="button" onclick="editarPost(${post.id})">Editar</button>
+                        <button type="button" class="btn-danger" onclick="eliminarPost(${post.id})">Eliminar</button>
+                    </div>
+                `;
+                listaPosts.appendChild(div);
+            });
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const idInput = document.getElementById('postId').value;
+            const titulo = document.getElementById('titulo').value;
+            const categoria = document.getElementById('categoria').value.toUpperCase();
+            const nombreImagen = document.getElementById('nombreImagen').value;
+            const extracto = document.getElementById('extracto').value;
+            const contenido = document.getElementById('contenido').value;
+            const fechaActual = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+            const rutaImagen = "blog_im/" + nombreImagen;
+
+            if (idInput === "") {
+                const nuevoPost = {
+                    id: Date.now(),
+                    titulo,
+                    categoria,
+                    fecha: fechaActual,
+                    imagen: rutaImagen,
+                    extracto,
+                    contenido
+                };
+                posts.push(nuevoPost);
+            } else {
+                const idPost = parseInt(idInput);
+                const post = posts.find(p => p.id === idPost);
+                if (post) {
+                    post.titulo = titulo;
+                    post.categoria = categoria;
+                    post.imagen = rutaImagen;
+                    post.extracto = extracto;
+                    post.contenido = contenido;
+                }
+            }
+
+            guardarEnLocalStorage();
+            renderizarAdmin();
+            resetForm();
+        });
+
+        window.editarPost = function(id) {
+            const post = posts.find(p => p.id === id);
+            if (!post) return;
+
+            document.getElementById('postId').value = post.id;
+            document.getElementById('titulo').value = post.titulo;
+            document.getElementById('categoria').value = post.categoria;
+            
+            const nombreSolo = post.imageUrl ? post.imageUrl : post.imagen.replace("blog_im/", "");
+            document.getElementById('nombreImagen').value = nombreSolo;
+            
+            document.getElementById('extracto').value = post.extracto;
+            document.getElementById('contenido').value = post.contenido;
+            
+            btnGuardar.textContent = "Actualizar Post";
+            btnCancelar.style.display = "inline-block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.eliminarPost = function(id) {
+            if (confirm("¿Estás seguro de que deseas eliminar esta entrada?")) {
+                posts = posts.filter(p => p.id !== id);
+                guardarEnLocalStorage();
+                renderizarAdmin();
+                resetForm();
+            }
+        };
+
+        window.resetForm = function() {
+            form.reset();
+            document.getElementById('postId').value = "";
+            btnGuardar.textContent = "Crear Post";
+            btnCancelar.style.display="none";
+        };
+
+        window.descargarJson = function() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(posts, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "posts.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        document.addEventListener('DOMContentLoaded', renderizarAdmin);
+    </script>
+</body>
+</html>
