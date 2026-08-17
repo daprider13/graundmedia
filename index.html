@@ -408,120 +408,6 @@
             margin-bottom: 2px;
         }
 
-        .blog-preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
-            align-items: stretch;
-        }
-
-        .blog-preview-card {
-            background: #ffffff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            border: 1px solid #eaeaea;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s ease;
-        }
-
-        .blog-preview-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .blog-preview-img {
-            width: 100%;
-            height: 180px;
-            background-color: #d1d5db;
-            overflow: hidden;
-        }
-
-        .blog-preview-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .blog-preview-content {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-
-        .blog-preview-meta {
-            font-size: 11px;
-            color: #888;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .blog-preview-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #111;
-            margin: 0 0 10px 0;
-            line-height: 1.4;
-        }
-
-        .blog-preview-excerpt {
-            font-size: 13px;
-            color: #555;
-            line-height: 1.5;
-            margin-bottom: 15px;
-            flex: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .btn-blog-read {
-            background-color: #e60023;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            align-self: flex-start;
-            transition: background 0.2s;
-        }
-
-        .btn-blog-read:hover {
-            background-color: #ad081b;
-        }
-
-        .blog-preview-card.go-to-blog-card {
-            background-color: #e60023;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            text-decoration: none;
-            padding: 40px 20px;
-            text-align: center;
-            min-height: 312px;
-        }
-
-        .blog-preview-card.go-to-blog-card:hover {
-            background-color: #ad081b;
-        }
-
-        .go-to-blog-text {
-            color: #ffffff;
-            font-size: 18px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         .category-carousel-wrapper {
             position: relative;
             display: flex;
@@ -794,7 +680,7 @@
             <ul class="footer-column">
                 <li><a onclick="desplazarASeccion('OUR STORY')">ABOUT US</a></li>
                 <li><a onclick="desplazarASeccion('OUR STORY')">OUR STORY</a></li>
-                <li><a onclick="desplazarASeccion('BLOG')">BLOG</a></li>
+                <li><a href="brand_manifest.html">MANIFEST</a></li>
                 <li><a onclick="desplazarASeccion('ALL CLOTHING')">ALL CLOTHING</a></li>
                 <li><a onclick="desplazarASeccion('MEN')">MEN</a></li>
                 <li><a onclick="desplazarASeccion('WOMEN')">WOMEN</a></li>
@@ -818,7 +704,7 @@
 
     <script>
         const tabsFijas = {
-            "ABOUT US": ["OUR STORY", "BLOG"],
+            "ABOUT US": ["OUR STORY", "MANIFEST"],
             "CLOTHING": ["ALL CLOTHING", "MEN", "WOMEN"],
             "ACCESORIES": ["CAPS", "SOCKS", "BACKPACK"],
             "COOL STUFF": ["CASES", "PC&LAPTOP", "PILLOW"],
@@ -842,7 +728,7 @@
 
         const productosConfig = {
             "OUR STORY": [],
-            "BLOG": [],
+            "MANIFEST": [],
             "ALL CLOTHING": [
                 { archivo: "cloth1.jpg", nombre: "Graphic T-Shirt: Ground Skull&Bulls (Negative)", link: "https://www.redbubble.com/i/t-shirt/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/rfjh" },
                 { archivo: "cloth2.jpg", nombre: "Boxy T-Shirt: Be Strong to Move the World", link: "https://www.redbubble.com/i/t-shirt/Be-Strong-to-Move-the-World-by-GraundDSGN/182642419/xtkm?asc=u" },
@@ -1042,7 +928,12 @@
                     ev.preventDefault();
                     document.querySelectorAll(".dynamic-links a").forEach(el => el.classList.remove("active-sub"));
                     a.classList.add("active-sub");
-                    desplazarASeccion(opTexto);
+                    
+                    if (opTexto === "MANIFEST") {
+                        window.location.href = "brand_manifest.html";
+                    } else {
+                        desplazarASeccion(opTexto);
+                    }
                 };
 
                 li.appendChild(a);
@@ -1109,8 +1000,13 @@
                     ev.preventDefault();
                     document.querySelectorAll(".dynamic-links a").forEach(el => el.classList.remove("active-sub"));
                     a.classList.add("active-sub");
-                    desplazarASeccion(opTexto);
-                    cerrarPanelDinamico();
+                    
+                    if (opTexto === "MANIFEST") {
+                        window.location.href = "brand_manifest.html";
+                    } else {
+                        desplazarASeccion(opTexto);
+                        cerrarPanelDinamico();
+                    }
                 };
                 li.appendChild(a);
                 optionsContainer.appendChild(li);
@@ -1139,24 +1035,15 @@
 
             const subcategoriasList = [];
             Object.values(tabsFijas).forEach(subArray => {
-                subArray.forEach(sub => subcategoriasList.push(sub));
+                subArray.forEach(sub => {
+                    if (sub !== "MANIFEST") {
+                        subcategoriasList.push(sub);
+                    }
+                });
             });
 
-            const subcatsOrdenadas = subcategoriasList.filter(sub => sub !== "OUR STORY" && sub !== "BLOG");
+            const subcatsOrdenadas = subcategoriasList.filter(sub => sub !== "OUR STORY");
             subcatsOrdenadas.push("OUR STORY");
-            subcatsOrdenadas.push("BLOG");
-
-            // Cargar posts.json de forma segura para la home
-            let blogPosts = [];
-            var postsGetter = new XMLHttpRequest();
-	    postsGetter.open('get', 'https://www.graunddsgn.com/posts.json', false);
-	    postsGetter.send();
-
-		if(postsGetter.status == 200)
-		{
-		blogPosts = JSON.parse(postsGetter.responseText);
-		}
-
 
             subcatsOrdenadas.forEach(subcategoria => {
                 const idSeccion = "seccion-" + subcategoria.toLowerCase().replace(/[^a-z0-9]/g, '-');
@@ -1208,45 +1095,6 @@
                         </div>
                     `;
                     sectionDiv.appendChild(aboutBox);
-                } else if (subcategoria === "BLOG") {
-                    const blogPreviewContainer = document.createElement("div");
-
-                    if (blogPosts.length === 0) {
-                        blogPreviewContainer.innerHTML = `
-                            <p style="color: #666; font-style: italic; font-size: 14px;">No posts found yet. Check back soon for stories and design philosophy.</p>
-                        `;
-                    } else {
-                        const gridDiv = document.createElement("div");
-                        gridDiv.className = "blog-preview-grid";
-
-                        const postsAMostrar = blogPosts.slice(0, 3);
-                        postsAMostrar.forEach(post => {
-                            const card = document.createElement("div");
-                            card.className = "blog-preview-card";
-                            card.innerHTML = `
-                                <div class="blog-preview-img">
-                                    <img src="${post.imagen}" alt="${post.titulo}">
-                                </div>
-                                <div class="blog-preview-content">
-                                    <div class="blog-preview-meta">${post.categoria} — ${post.fecha}</div>
-                                    <h4 class="blog-preview-title">${post.titulo}</h4>
-                                    <p class="blog-preview-excerpt">${post.extracto}</p>
-                                    <a href="post.html?id=${post.id}" class="btn-blog-read">Leer artículo</a>
-                                </div>
-                            `;
-                            gridDiv.appendChild(card);
-                        });
-
-                        const goToCard = document.createElement("a");
-                        goToCard.href = "blog.html";
-                        goToCard.className = "blog-preview-card go-to-blog-card";
-                        goToCard.innerHTML = `<span class="go-to-blog-text">GO TO BLOG</span>`;
-                        gridDiv.appendChild(goToCard);
-
-                        blogPreviewContainer.appendChild(gridDiv);
-                    }
-
-                    sectionDiv.appendChild(blogPreviewContainer);
                 } else {
                     const listaProds = productosConfig[subcategoria] || [];
 
@@ -1344,3 +1192,4 @@
     </script>
 </body>
 </html>
+```[cite: 4]
