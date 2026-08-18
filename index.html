@@ -546,8 +546,7 @@
             background-color: #1a1a1a; 
             color: #ffffff;
             padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+            position: relative;
         }
 
         .footer-columns-container {
@@ -556,6 +555,7 @@
             gap: 40px;
             width: 100%;
             max-width: 800px;
+            margin: 0 auto;
             justify-content: center;
         }
 
@@ -579,6 +579,33 @@
         }
 
         .footer-column a:hover { color: #ffffff; }
+
+        .footer-non-container {
+            position: absolute;
+            right: 30px;
+            bottom: 25px;
+        }
+
+        .btn-footer-non {
+            background-color: #000000;
+            color: #e60023;
+            border: 2px solid #e60023;
+            padding: 5px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            transition: background-color 0.2s, color 0.2s, transform 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        .btn-footer-non:hover {
+            background-color: #e60023;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
 
         .footer-bottom-legend {
             width: 100%;
@@ -613,6 +640,13 @@
             .pin-card-img-container { height: 170px; }
             .cat-slider-btn { display: none; }
             .footer-columns-container { grid-template-columns: 1fr; gap: 25px; padding: 0 10px; }
+            
+            .footer-non-container {
+                position: static;
+                display: flex;
+                justify-content: center;
+                margin-top: 25px;
+            }
         }
     </style>
 </head>
@@ -712,6 +746,9 @@
                 <li><a onclick="desplazarASeccion('PINS')">PINS</a></li>
             </ul>
         </div>
+        <div class="footer-non-container">
+            <a href="NON_LOP.html" class="btn-footer-non">[NON]</a>
+        </div>
     </div>
 
     <div class="footer-bottom-legend">
@@ -765,7 +802,7 @@
                 { archivo: "women1.jpg", nombre: "Racerback Tank Top: Ground Power Gym", link: "https://www.redbubble.com/i/tank-top/Ground-Power-Gym-by-GraundDSGN/182641578/wwtp?asc=u" },
                 { archivo: "women2.jpg", nombre: "Dress Graund Be strong to move the world", link: "https://www.redbubble.com/i/dress/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/3yb7?asc=u" },
                 { archivo: "women3.jpg", nombre: "T-shirt GRAUND_SIMPLE_LOGO", link: "https://www.redbubble.com/i/t-shirt/GRAUND_SIMPLE_LOGO-by-GraundDSGN/182652280/nz95?asc=u" },
-                { archivo: "women4.jpg", nombre: "T-shirt Street Rider for Riders", link: "https://www.redbubble.com/i/t-shirt/Street-Rider-for-Riders-by-GraundDSGN/182672201/xmcg?asc=u" },
+                { archivo: "women4.jpg", nombre: "T-shirt Street Rider for Riders", link: "https://www.redbubble.com/i/t-shirt/Street-Rider-by-GraundDSGN/182672201/xmcg?asc=u" },
                 { archivo: "women5.jpg", nombre: "T-shirt No More stickers please", link: "https://www.redbubble.com/i/t-shirt/No-More-stickers-please-by-GraundDSGN/182651606/xtkm?asc=u" },
                 { archivo: "women6.jpg", nombre: "A-Line Dress: Black sheep", link: "https://www.redbubble.com/i/dress/black-sheep-by-graund-by-GraundDSGN/183015390/3yb7?asc=u" }
             ],
@@ -806,7 +843,7 @@
                 { archivo: "pc&laptop2.jpg", nombre: "Laptop Sleeve: No More stickers please", link: "https://www.redbubble.com/i/laptop-case/No-More-stickers-please-by-GraundDSGN/182651606/uh7r?asc=u" },
                 { archivo: "pc&laptop3.jpg", nombre: "Mouse Pad: Ground Skull&Bulls (Negative)", link: "https://www.redbubble.com/i/mouse-pad/Ground-SkullandBulls-Negative-by-GraundDSGN/182640817/2mh5?asc=u" },
                 { archivo: "pc&laptop4.jpg", nombre: "Desk Mat: Graund Be strong to move the world", link: "https://www.redbubble.com/i/mouse-pad/Graund-Be-strong-to-move-the-world-by-GraundDSGN/182642089/4qvw?asc=u" },
-                { archivo: "pc&laptop5.jpg", nombre: "Desk Mat: Street Rider for Riders", link: "https://www.redbubble.com/i/mouse-pad/Street-Rider-for-Riders-by-GraundDSGN/182672201/4qvw?asc=u" },
+                { archivo: "pc&laptop5.jpg", nombre: "Desk Mat: Street Rider for Riders", link: "https://www.redbubble.com/i/mouse-pad/Street-Rider-by-GraundDSGN/182672201/4qvw?asc=u" },
                 { archivo: "pc&laptop6.jpg", nombre: "Mouse Pad: Ground Power Gym", link: "https://www.redbubble.com/i/mouse-pad/Ground-Power-Gym-by-GraundDSGN/182641578/2mh5?asc=u" }
             ],
             "PILLOW": [
@@ -834,7 +871,7 @@
                 { archivo: "pins6.jpg", nombre: "Pin: alien dude goes to work", link: "https://www.redbubble.com/i/pin/alien-dude-goes-to-work_-by-graund-by-GraundDSGN/183015574/lw9c?asc=u" }
             ],
             "MAGNETS": [
-                { archivo: "magnets1.jpg", nombre: "Magnet: Street Rider for Riders", link: "https://www.redbubble.com/i/magnet/Street-Rider-for-Riders-by-GraundDSGN/182672201/9gzh?asc=u" },
+                { archivo: "magnets1.jpg", nombre: "Magnet: Street Rider for Riders", link: "https://www.redbubble.com/i/magnet/Street-Rider-by-GraundDSGN/182672201/9gzh?asc=u" },
                 { archivo: "magnets2.jpg", nombre: "Magnet: Ride Now", link: "https://www.redbubble.com/i/magnet/Ride-Now-by-GraundDSGN/182672697/9gzh?asc=u" },
                 { archivo: "magnets3.jpg", nombre: "Magnet: Graund SkullandBulls", link: "https://www.redbubble.com/i/magnet/Graund-SkullandBulls-by-GraundDSGN/182627545/9gzh?asc=u" },
                 { archivo: "magnets4.jpg", nombre: "Magnet: No More stickers please", link: "https://www.redbubble.com/i/magnet/No-More-stickers-please-by-GraundDSGN/182651606/9gzh?asc=u" },
