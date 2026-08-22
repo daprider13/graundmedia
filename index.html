@@ -503,7 +503,7 @@
 
         .footer-columns-container {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 250px)); /* Modificado a 2 columnas */
+            grid-template-columns: repeat(2, minmax(0, 250px));
             gap: 40px;
             width: 100%;
             max-width: 950px;
@@ -560,7 +560,7 @@
             .nav-links { display: none; }
             .mobile-menu-btn { display: flex; }
             
-            .slider-container { display: none; }
+            .slider-container { display: block; } /* Asegura que el carrusel se muestre en móviles ya que ahora usa banners adaptados */
 
             .pin-card { flex: 0 0 160px; }
             .pin-card-img-container { height: 170px; }
@@ -782,7 +782,7 @@
             1: "https://www.redbubble.com/shop/ap/183117554?asc=u",
             2: "https://www.redbubble.com/es/shop/ap/182652280",
             3: "https://www.redbubble.com/es/shop/ap/182642089",
-	    4: "https://www.redbubble.com/es/shop/ap/182651606"
+	        4: "https://www.redbubble.com/es/shop/ap/182651606"
         };
 
         let intervaloCarrusel;
@@ -801,8 +801,12 @@
             const maxBanners = 10;
             let bannersCargados = 0;
 
+            // Detectar si es vista móvil (según el breakpoint de CSS de 768px)
+            const esMovil = window.innerWidth <= 768;
+            const carpetaBanners = esMovil ? "mobil banners" : "banners";
+
             for (let i = 1; i <= maxBanners; i++) {
-                const rutaImagen = `banners/banner${i}.jpg`; 
+                const rutaImagen = `${carpetaBanners}/banner${i}.jpg`; 
                 const existe = await verificarArchivo(rutaImagen);
                 if (existe) {
                     bannersCargados++;
